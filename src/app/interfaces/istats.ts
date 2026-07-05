@@ -1,4 +1,4 @@
 export interface Istats {
-    base_stat: string;
+    base_stat: number;
     name: string;
 }

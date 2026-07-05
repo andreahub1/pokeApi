@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { CapacitorHttp, HttpResponse } from '@capacitor/core';
-import { IPokemon } from '../interfaces/Ipokemon';
+import { IPokemon } from '../interfaces/ipokemon';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SPokemon {
   private readonly apiUrl = 'https://pokeapi.co/api/v2/pokemon';
-  private nextUrl = `${this.apiUrl}?limit20&offset=0`;
+  private nextUrl = `${this.apiUrl}?limit=20&offset=0`;
 
   getPokemons() {
     if (this.nextUrl) {
@@ -45,6 +45,12 @@ export class SPokemon {
     return null;
   }
 
+  getPokemon(id: number) {
+    const ruta = `${this.apiUrl}/${id}`;
+    return CapacitorHttp.get({url: ruta, params:{}})
+    .then((response: HttpResponse) => this.processPokemon(response.data))
+
+  }
   private processPokemon(pokemonData: any) {
     const pokemon: IPokemon = {
       id: pokemonData.id,
