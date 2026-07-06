@@ -31,8 +31,8 @@ export class ListPokemonsPage {
   }
 
   goToPage(pokemon: IPokemon) {
-    this.router.navigate(['detail-pokemon', pokemon.id]);
-  }
+  this.router.navigate(['/detail-pokemon', pokemon.id]);
+}
 
   async getMorePokemons(event?: InfiniteScrollCustomEvent) {
     const promisePokemons = this.pokemonService.getPokemons();
